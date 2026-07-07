@@ -1,0 +1,810 @@
+{
+	"usage": [
+		"/hyp <玩家> [分类]",
+		"==================",
+		"- 最近游玩, r",
+		"- 工会信息, g",
+		"- 起床战争, bw",
+		"- 空岛战争, sw",
+		"- 极限生存, uhc",
+		"- 天坑乱斗, pit",
+		"- 超级战墙, mw",
+		"- 闪电饥饿, bsg",
+		"- 决斗游戏, duel",
+		"- 羊毛游戏, ww",
+		"- 大厅跑酷, p",
+		"- 建筑大师, bb",
+		"- 密室杀手, mm",
+		"- SkyBlock, sb",
+		"- 僵尸末日, zb",
+		"==================",
+		"缓存管理: /hyp cache [stats/clean]"
+	],
+	"description": "获取指定玩家的 Hypixel 统计信息",
+	"messages": {
+		"cache": {
+			"stats": [
+				"Hypixel查询统计信息:",
+				"============",
+				"用户冷却: %1$d",
+				"缓存总数: %2$d",
+				"缓存占用: %3$s",
+				"============"
+			],
+			"clean": "已清理缓存文件 %s.",
+			"usage": [
+				"/hyp cache [命令]",
+				"- stats 查看缓存统计",
+				"- clean 清理所有缓存"
+			]
+		},
+		"guild": {
+			"layout": [
+				"===公会信息===",
+				"%1$s",
+				"| 名称: %2$s",
+				"| 等级: %4$.3f", 
+				"| 标签: [%5$s]",
+				"| 成员: %6$d",
+				"| 创立时间: %3$s",
+				"| 最高在线: %7$d",
+				"| 偏好游戏: %8$s"
+			],
+			"placeholders": {
+				"none": "无"
+			},
+			"info": {
+				"guild_not_found": "%s 没有加入公会."
+			}
+		},
+		"bsg": {
+			"layout": [
+				"===闪电饥饿信息===",
+				"%1$s",
+				"| 游玩次数: %2$s",
+				"| 硬币: %3$s",
+				"| 开箱数: %4$s",
+				"| 击杀/死亡: %5$s / %6$s",
+				"| K/D: %7$.3f"
+			]
+		},
+		"duels": {
+			"layout": [
+				"===决斗游戏信息===",
+				"%1$s",
+				"| 模式: %2$s",
+				"| %3$s",
+				"| 回合: %4$s",
+				"| 胜/败: %5$s / %6$s",
+				"| W/L: %7$.3f",
+				"| %8$s",
+				"| 击杀/死亡: %9$s / %10$s",
+				"| K/D: %11$.3f",
+				"| %12$s",
+				"| 击打/击中: %13$s / %14$s | 击中率: %15$.1f%%",
+				"| %16$s",
+				"| 恢复生命: %17$s",
+				"| 造成伤害: %18$s"
+			],
+			"placeholders": {
+				"general_stats": "硬币: %1$s",
+				"win_strikes": "最高连胜: %2$s",
+				"win_strikes_no_access": "该玩家在 API 设置中阻止获取连胜信息",
+				"bow_stats": "射箭/射中: %1$s / %2$s | 射中率: %3$.1f%%",
+				"gapples_eaten": "食用金苹果: %s",
+				"blocks_placed": "方块放置: %s"
+			},
+			"info": {
+				"usage": [
+					"/hyp %s duels [模式]",
+					"支持的模式列表:",
+					"- classic",
+					"- sw",
+					"- sw_doubles",
+					"- bow",
+					"- uhc",
+					"- uhc_doubles",
+					"- uhc_four",
+					"- uhc_meetup",
+					"- potion",
+					"- combo",
+					"- op",
+					"- op_doubles",
+					"- mw",
+					"- mw_doubles",
+					"- sumo",
+					"- blitz",
+					"- bowspleef",
+					"- bridge",
+					"- bridge_doubles",
+					"- bridge_four",
+					"- bridge_2v2v2v2",
+					"- bridge_3v3v3v3"
+				]
+			}
+		},
+		"uhc": {
+			"layout": [
+				"===UHC极限生存信息===",
+				"%1$s",
+				"| 分数: %2$s",
+				"| 硬币: %3$s",
+				"| 胜场: %4$s",
+				"| 击杀/死亡: %5$s / %6$s",
+				"| K/D: %7$.3f"
+			]
+		},
+		"mw": {
+			"layout": [
+				"===MW超级战墙信息===",
+				"%1$s",
+				"| 凋零伤害: %2$s",
+				"| 职业: %3$s",
+				"| 硬币: %4$s",
+				"| 击杀/死亡: %5$s / %7$s",
+				"| K/D: %8$.3f",
+				"| 终杀/终死: %9$s / %11$s",
+				"| FKDR: %12$.3f",
+				"| 助攻/终助: %6$s / %10$s",
+				"| 胜场/败场: %13$s / %14$s",
+				"| W/L: %15$.3f"
+			]
+		},
+		"sw": {
+			"layout": [
+				"===SW空岛战争信息===",
+				"%1$s",
+				"| 等级: %2$s",
+				"| 硬币: %3$s",
+				"| 击杀/助攻: %5$s / %4$s",
+				"| K/D: %7$.3f",
+				"| 胜场/败场: %8$s / %9$s",
+				"| W/L: %10$.3f"
+			]
+		},
+		"bb": {
+			"layout": [
+				"===建筑大师信息===",
+				"%1$s",
+				"| 称号: %2$s",
+				"| 积分: %3$s",
+				"| 硬币: %4$s",
+				"| 游玩局数: %5$s",
+				"| 总胜场: %6$s",
+				"| 获得票数: %7$s | 超级票: %8$s",
+				"| 单人/团队胜场: %9$s / %10$s",
+				"| 高手模式胜场: %11$s",
+				"| 建筑猜猜乐胜场: %12$s | 猜对次数: %13$s"
+			]
+		},
+		"ww": {
+			"layout": [
+				"===羊毛游戏信息===",
+				"%1$s",
+				"| 等级: %2$.2f",
+				"| 羊毛币: %3$s",
+				"--羊毛战争--",
+				"| 场次: %4$s",
+				"| 胜/败: %5$s / %6$s | W/L: %7$.3f",
+				"| 击杀/死亡: %8$s / %9$s | K/D: %10$.3f",
+				"| 助攻: %11$s | 放置羊毛: %12$s",
+				"--甜蜜战争--",
+				"| 胜场: %13$s | 击杀: %14$s",
+				"--夺羊大战--",
+				"| 胜场: %15$s | 夺取羊毛: %16$s"
+			]
+		},
+		"bw": {
+			"layout": [
+				"===BW起床战争信息===",
+				"%1$s",
+				"| 模式: %2$s",
+				"| %3$s",
+				"| 胜/败: %7$s / %8$s",
+				"| W/L: %9$s",
+				"| 击杀/死亡: %10$s / %11$s",
+				"| K/D: %12$s",
+				"| 终杀/终死: %13$s / %14$s",
+				"| FKDR: %15$s",
+				"| 拆/被拆床: %4$s / %5$s",
+				"| 铁锭/金锭/钻石/绿宝石收集: ",
+				"%16$s / %17$s / %18$s / %19$s"
+			],
+			"placeholders": {
+				"general_stats": "等级: %1$s | 硬币: %2$s",
+				"win_strikes_no_access": "玩家阻止获取"
+			},
+			"info": {
+				"usage": [
+					"/hyp %s bw [模式]",
+					"支持的模式列表:",
+					"- solo",
+					"- doubles",
+					"- 3v3v3v3",
+					"- 4v4v4v4",
+					"- 4v4",
+					"- doubles_rush",
+					"- 4v4v4v4_rush",
+					"- doubles_ultimate",
+					"- 4v4v4v4_ultimate",
+					"- doubles_voidless",
+					"- 4v4v4v4_voidless",
+					"- doubles_armed",
+					"- 4v4v4v4_armed",
+					"- doubles_lucky",
+					"- 4v4v4v4_lucky"
+				]
+			}
+		},
+		"mm": {
+			"layout": [
+
+			],
+			"info": {
+				"usage": [
+					"/hyp %1$s mm [模式序号/地图序号/模式+地图序号]",
+					"模式序号列表 (序号 - 模式名):",
+					"|1 - 经典模式",
+					"|2 - 双倍模式",
+					"|3 - 刺客模式",
+					"|4 - 感染模式"
+				]
+			}
+		},
+		"zb": {
+			"layout_fastView": [
+				"===僵尸末日全局信息===",
+				"%1$s",
+				"| 生存总回合: %2$s",
+				"| 胜场: %3$s",
+				"| 命中率: %4$.1f%%",
+				"| 爆头率 %5$.1f%%",
+				"| 胜场或最佳回合 (普通/困难/安息)",
+				"| 穷途末路: %6$s/%7$s/%8$s",
+				"| 坏血之宫: %9$s/%10$s/%11$s",
+				"| 外星游乐园: %12$s",
+				"| 监狱: %13$s/%14$s/%15$s"
+			],
+			"layout": [
+				"===僵尸末日信息===",
+				"%1$s",
+				"| 地图: %2$s",
+				"| 生存总回合数: %4$s",
+				"| 胜场: %5$s",
+				"| 最佳回合: %6$s",
+				"| 僵尸击杀数: %7$s",
+				"| 复活玩家数: %8$s",
+				"| 开门数: %9$s",
+				"| 窗户修复数: %10$s",
+				"| 被击倒次数: %11$s",
+				"| 死亡数: %12$s",
+				"%13$s",
+				"%14$s",
+				"%15$s"
+			],
+			"placeholders": {
+				"records": [
+					"| 最快完成 10 回合: %1$s",
+					"| 最快完成 20 回合: %2$s",
+					"| 最快通关: %3$s"
+				],
+				"shots": [
+					"射击/射中: %1$s / %2$s | 爆头: %3$s",
+					"命中率: %4$.1f%% | 爆头率 %5$.1f%%"
+				],
+				"boss_kills": [
+					"%1$s击杀: %2$s | %3$s击杀: %4$s",
+					"%5$s击杀: %6$s"
+				],
+				"boss_kills_aa": [
+					"%1$s击杀: %2$s | %3$s击杀: %4$s",
+					"%5$s击杀: %6$s | %7$s击杀: %8$s"
+				],
+				"bosses": {
+					"tnt": "炸弹僵尸",
+					"inferno": "炼狱",
+					"broodmother": "巢穴之母",
+					"king_slime": "史莱姆王",
+					"wither": "凋零",
+					"herobrine": "HIM",
+					"giant": "巨人",
+					"the_old_one": "长者",
+					"giant_rainbow": "彩虹巨人",
+					"world_ender": "世界毁灭者",
+					"prisoner_zombie_angry": "愤怒囚犯",
+					"corrupted_pigman": "腐化猪人",
+					"the_warden":"典狱长"
+				},
+				"difficulties": {
+					"normal": "普通难度",
+					"hard": "困难难度",
+					"rip": "安息难度",
+					"general": "全局"
+				}
+			},
+			"info": {
+				"unknown_map": [
+					"未知的地图.",
+					"地图列表:",
+					"- all",
+					"- de",
+					"- bb",
+					"- aa",
+					"- pr"
+				],
+				"unknown_difficulty": [
+					"未知的难度.",
+					"难度列表:",
+					"- normal",
+					"- hard",
+					"- rip"
+				]
+			}
+		},
+		"sb": {
+			"auctions": {
+				"layout": [
+					"===SkyBlock===",
+					"-物品拍卖信息-",
+					"%1$s",
+					"| 存档:%2$s",
+					"%3$s",
+					"当前展示 %4$d/%5$d 页."
+				],
+				"placeholders": {
+					"item": [
+
+					],
+					"item_bin": [
+						
+					]
+				}
+			}
+		},
+		"pit": {
+			"layout": [
+				"===天坑乱斗信息===",
+				"%1$s",
+				"| 等级: %2$s",
+				"| 精通: %3$s", 
+				"| 击杀/助攻: %5$s / %6$s",
+				"| 死亡: %7$s",
+				"| 最高连杀: %4$s",
+				"| K/D: %8$s",
+				"| K+A/D: %9$s"
+			]
+		},
+		"recent": {
+			"layout": [
+				"%1$s 的最近游玩的游戏:",
+				"%2$s",
+				"%3$s"
+			],
+			"placeholders": {
+				"ended_game": [
+					"# %1$s%2$s%3$s",
+					"\t开始时间: %4$s",
+					"\t结束时间: %5$s"
+				],
+				"ongoing_game": [
+					"# %1$s%2$s%3$s",
+					"\t开始时间: %4$s",
+					"\t● 游戏进行中..."
+				],
+				"page_indicator": [
+					"当前展示 %1$d/%2$d 页.",
+					"使用 /hyp %3$s r <页数> 来翻页."
+				]
+			},
+			"info": {
+				"no_data_or_access": "玩家 %s 没有最近的游戏, 或在 API 设置中禁止了此请求."
+			}
+		},
+		"general": {
+			"layout": [
+				"%1$s",
+				"| 等级: %2$.3f",
+				"| 人品值: %3$s",
+				"| 成就点数: %4$s",
+				"| 小游戏胜场: %5$s",
+				"| 完成任务/挑战: %6$s / %7$s",
+				"| Rank赠送: %16$s",
+				"| 语言: %9$s",
+				"| 最近游玩: %10$s",
+				"首次登录: %11$s",
+				"上次登录: %12$s",
+				"%13$s",
+				"%14$s",
+				"%15$s"
+			],
+			"placeholders": {
+				"no_access": "玩家阻止获取",
+				"no_access_or_data": "玩家阻止获取或无数据",
+				"last_logout": "上次退出: %s",
+				"online": "● 在线时长: %s",
+				"status": "● 当前位置: %1$s%2$s%3$s"
+			}
+		},
+		"info": {
+			"request_failed": "查询请求发送超时或失败, 请稍后再试.",
+			"incomplete_json": "查询结果接收失败, 请稍后再试.",
+			"player_not_found": "找不到此玩家, 请确认拼写无误.",
+			"rate_limit_reached": "该玩家需要一段冷却时间才能查询, 请一段时间后再试.",
+			"learn_more": ""
+		},
+		"modes": {
+			"all": "全局",
+
+			"LOBBY": "大厅",
+
+			"ctf_mini": "夺旗模式",
+			"domination": "抢点战模式",
+			"team_deathmatch": "团队死亡竞赛模式",
+
+			"standard": "标准模式",
+			"face_off": "对决模式",
+
+			"2v2_normal": " 2v2 模式",
+			"1v1_normal": " 1v1 模式",
+			"friends_normal": " Friends 1v1v1v1 模式",
+
+			"dynamic": "私人岛屿",
+			"hub": "主岛屿",
+			"farming_1": "农场岛屿",
+			"combat_1": "蜘蛛巢穴",
+			"combat_2": "烈焰堡垒",
+			"combat_3": "末地",
+			"mining_1": "黄金矿区",
+			"mining_2": "深层矿洞",
+			"mining_3": "矮人矿坑",
+			"mining_4": "水晶矿洞",
+			"foraging_1": "公园",
+			"dungeon_hub": "地牢大厅",
+			"dungeon": "地牢",
+
+			"ranked_normal": "排位模式",
+			"solo_normal": "单挑普通模式",
+			"solo_insane": "单挑疯狂模式",
+			"teams_normal": "双人普通模式",
+			"teams_insane": "双人疯狂模式",
+			"mega_normal": " 超级普通模式",
+			"mega_doubles": "超级 Doubles 模式",
+			"solo_insane_tnt_madness": "单挑疯狂 TNT 模式",
+			"teams_insane_tnt_madness": "双人疯狂 TNT 模式",
+			"solo_rush": "单挑疾速模式",
+			"teams_insane_rush": "双人疾速模式",
+			"solo_insane_slime": "单挑史莱姆模式",
+			"teams_insane_slime": "双人史莱姆模式",
+			"solo_insane_lucky": "单挑幸运方块模式",
+			"teams_insane_lucky": "双人幸运方块模式",
+			"solo_insane_hunters_vs_beasts": "兽猎对决模式",
+
+			"TNTRUN": "方块掘战",
+			"PVPRUN": "PVP 方块掘战",
+			"BOWSPLEEF": "掘一死箭",
+			"TNTAG": "烫手 TNT ",
+			"CAPTURE": "法师掘战",
+
+			"BEDWARS_EIGHT_ONE": "单挑模式",
+			"BEDWARS_EIGHT_TWO": "双人模式",
+			"BEDWARS_FOUR_THREE": " 3v3v3v3 模式",
+			"BEDWARS_FOUR_FOUR": " 4v4v4v4 模式",
+			"BEDWARS_CAPTURE": "据点模式",
+			"BEDWARS_EIGHT_TWO_RUSH": "双人疾速模式",
+			"BEDWARS_FOUR_FOUR_RUSH": " 4v4v4v4 疾速模式",
+			"BEDWARS_EIGHT_TWO_ULTIMATE": "双人超能力模式",
+			"BEDWARS_FOUR_FOUR_ULTIMATE": " 4v4v4v4 超能力模式",
+			"BEDWARS_CASTLE": " 40v40 城池攻防战模式",
+			"BEDWARS_TWO_FOUR": "4V4 模式",
+			"BEDWARS_EIGHT_TWO_VOIDLESS": "双人无虚空模式",
+			"BEDWARS_FOUR_FOUR_VOIDLESS": " 4v4v4v4 无虚空模式",
+			"BEDWARS_EIGHT_TWO_ARMED": "双人枪械模式",
+			"BEDWARS_FOUR_FOUR_ARMED": " 4v4v4v4 枪械模式",
+			"BEDWARS_EIGHT_TWO_LUCKY": "双人幸运方块模式",
+			"BEDWARS_EIGHT_TWO_SWAP": "双人交换模式",
+			"BEDWARS_FOUR_FOUR_SWAP": " 4v4v4v4 交换模式",
+			"BEDWARS_FOUR_FOUR_LUCKY": " 4v4v4v4 幸运方块模式",
+			"BEDWARS_EIGHT_TWO_UNDERWORLD": "双人 Under World 模式",
+			"BEDWARS_FOUR_FOUR_UNDERWORLD": " 4v4v4v4 Under World 模式",
+			"BEDWARS_PRACTICE": "练习模式",
+
+			"HOLE_IN_THE_WALL": "人体打印机",
+			"SOCCER": "足球",
+			"BOUNTY_HUNTERS": "赏金猎人",
+			"PIXEL_PAINTERS": "像素画师",
+			"DRAGON_WARS": "龙之战",
+			"ENDER_SPLEEF": "末影掘战",
+			"STARWARS": "星际战争",
+			"THROW_OUT": "乱棍之战",
+			"DEFENDER": "进击的苦力怕",
+			"PARTY_GAMES_1": "派对游戏",
+			"FARM_HUNT": "农场躲猫猫",
+			"ZOMBIES_DEAD_END": "僵尸末日",
+			"ZOMBIES_BAD_BLOOD": "僵尸末日",
+			"ZOMBIES_ALIEN_ARCADIUM": "僵尸末日",
+			"ZOMBIES_PRISON": "僵尸末日",
+			"HIDE_AND_SEEK_PROP_HUNT": "道具躲猫猫",
+			"HIDE_AND_SEEK_PARTY_POOPER": "派对躲猫猫",
+			"SIMON_SAYS": "我说你做",
+			"SANTA_SAYS": "圣诞老人说你做",
+			"MINI_WALLS": "迷你战墙",
+			"DAYONE": "行尸走肉",
+			"PVP_CTW": "捕捉羊毛大作战",
+			"HALLOWEEN_SIMULATOR": "万圣夜模拟器",
+			"GRINCH_SIMULATOR": "圣诞怪杰模拟器",
+			"EASTER_SIMULATOR": "复活节模拟器",
+			"SCUBA_SIMULATOR": " Scuba Simulator ",
+
+			"normal": "爆破模式",
+			"deathmatch": "团队死亡竞赛模式",
+			"NORMAL_PARTY": "挑战模式 - 爆破模式",
+			"DEATHMATCH_PARTY": "挑战模式 - 团队死亡竞赛模式",
+
+			"SOLO_NORMAL": "单人模式 1.8",
+			"TEAMS_NORMAL": "团队模式",
+			"SOLO_PRO": "高手模式",
+			"SOLO_NORMAL_LATEST": "单人模式 1.14 ",
+			"GUESS_THE_BUILD": "建筑猜猜乐",
+
+			"SOLO": "单挑模式",
+			"TEAMS": "组队模式",
+			"EVENTS": "活动模式",
+
+			"DUELS_CLASSIC_DUEL": "经典决斗",
+			"DUELS_SW_DUEL": "空岛战争决斗",
+			"DUELS_SW_DOUBLES": "空岛战争决斗双人决斗",
+			"DUELS_BOW_DUEL": "弓箭决斗",
+			"DUELS_UHC_DUEL": "极限生存决斗",
+			"DUELS_UHC_DOUBLES": "极限生存冠军双人决斗",
+			"DUELS_UHC_FOUR": "极限生存冠军四人决斗",
+			"DUELS_UHC_MEETUP": "极限生存冠军死亡竞赛决斗",
+			"DUELS_POTION_DUEL": "药水决斗",
+			"DUELS_COMBO_DUEL": "连击决斗",
+			"DUELS_OP_DUEL": "高手决斗",
+			"DUELS_OP_DOUBLES": "高手双人决斗",
+			"DUELS_MW_DUEL": "超级战墙决斗",
+			"DUELS_MW_DOUBLES": "超级战墙双人决斗",
+			"DUELS_SUMO_DUEL": "相扑决斗",
+			"DUELS_BLITZ_DUEL": "闪电饥饿游戏决斗",
+			"DUELS_BOWSPLEEF_DUEL": "掘一死箭决斗",
+			"DUELS_BRIDGE_DUEL": "战桥决斗",
+			"DUELS_BRIDGE_DOUBLES": "战桥双人决斗",
+			"DUELS_BRIDGE_FOUR": "战桥四人决斗",
+			"DUELS_BRIDGE_2V2V2V2": "战桥 2v2v2v2 决斗",
+			"DUELS_BRIDGE_3V3V3V3": "战桥 3v3v3v3 决斗",
+			"DUELS_BRIDGE_THREES": "战桥三人决斗",
+			"DUELS_BOXING_DUEL": "拳击决斗",
+			"DUELS_PARKOUR_EIGHT": "跑酷决斗",
+			"DUELS_ARENA_DUEL": "竞技场决斗",
+			"DUELS_DUEL_ARENA": "竞技场决斗",
+
+			"MURDER_CLASSIC": "经典模式",
+			"MURDER_DOUBLE_UP": "双倍模式",
+			"MURDER_ASSASSINS": "刺客模式",
+			"MURDER_INFECTION": "感染模式",
+
+			"TOWERWARS_SOLO": "塔防战争单挑模式",
+			"TOWERWARS_TEAM_OF_TWO": "塔防战争双人模式",
+			
+			"PIXEL_PARTY": " Pixel Party ",
+			"INVADERS" : "Invaders",
+			"DROPPER": "跓楼跳楼",
+			"ZOMBIES": "僵尸末日",
+
+			"wool_wars_two_four": "羊毛战争 4v4 模式",
+			"CAPTURE_THE_WOOL_TWO_TWENTY": "夺羊大战",
+			"SHEEP_WARS_TWO_SIX": "甜蜜战争",
+
+			"PIT": "天坑"
+		},
+		"games": {
+			"QUAKECRAFT": "未来射击",
+			"WALLS": "战墙",
+			"PAINTBALL": "彩弹射击",
+			"SURVIVAL_GAMES": "闪电饥饿游戏",
+			"TNTGAMES": "掘战游戏",
+			"VAMPIREZ": "吸血鬼",
+			"WALLS3": "超级战墙",
+			"ARCADE": "街机游戏",
+			"ARENA": "竞技场",
+			"UHC": "极限生存冠军",
+			"MCGO": "警匪大战",
+			"BATTLEGROUND": "战争领主",
+			"SUPER_SMASH": "星碎英雄",
+			"GINGERBREAD": "方块赛车",
+			"HOUSING": "家园世界",
+			"SKYWARS": "空岛战争",
+			"TRUE_COMBAT": "疯狂战墙",
+			"SPEED_UHC": "速战极限生存",
+			"SKYCLASH": "空岛竞技场",
+			"LEGACY": "经典游戏",
+			"PROTOTYPE": "游戏实验室",
+			"BEDWARS": "起床战争",
+			"MURDER_MYSTERY": "密室杀手",
+			"BUILD_BATTLE": "建筑大师",
+			"DUELS": "决斗游戏",
+			"SKYBLOCK": "空岛生存",
+			"PIT": "天坑乱斗",
+			"REPLAY": "回放系统",
+			"SMP": "Hypixel SMP",
+			"WOOL_GAMES": "羊毛游戏",
+			"MAIN": "主"
+		},
+		"maps": {
+			"all": "全部",
+			"none": "",
+
+			"Dead End": "穷途末路",
+			"Bad Blood": "坏血之宫",
+			"Alien Arcadium": "外星游乐园",
+			"Prison": "监狱",
+			
+			"Guess The Build": "",
+
+			"Amazon": "亚马逊雨林",
+			"Waterfall": "瀑布",
+			"Airshow": "热气球展览会",
+			"Aquarium": "水族馆",
+			"Archway": "拱形廊道",
+			"Ashore": "海滩",
+			"Boletum": "蘑菇岛",
+			"Chained": "铁索连环",
+			"Crypt": "地窖",
+			"Eastwood": "东方客栈",
+			"Glacier": "冰天雪地",
+			"Hollow": "中空岛屿",
+			"Invasion": "全盘入侵",
+			"Lectus": "罗马竞技场",
+			"Lighthouse": "灯塔",
+			"Lotus": "莲花岛",
+			"Pernicious": "不毛之地",
+			"Playground": "游乐场",
+			"Rooftop": "屋顶",
+			"Speedway": "赛道",
+			"Stonekeep": "石砖要塞",
+			"Swashbuckle": "海盗船",
+			"Treenan": "参天松树",
+			"Ivory Castle": "象牙城池",
+			"Cauldron": "炼药锅",
+
+			"Nomad": "流浪之地",
+			"Memorial": "纪念碑岛",
+			"Palette": "调色世界",
+			"Winterhelm": "冰盔岛",
+			"Villa": "别墅之岛",
+			"Chronos": "车轮之环",
+			"Mothership": "航空母舰",
+			"Oasis": "绿洲之岛",
+			"Onionring": "洋葱圈岛",
+			"Aegis": "盾之神殿",
+			"Agni Temple": "阿格尼神庙",
+			"Anchored": "水底之境",
+			"Aquarius": "水瓶座圣殿",
+			"Aqueduct": "运河大桥",
+			"Arx Citadel": "阿克斯城堡",
+			"Clearing": "荒野木屋",
+			"Coherence": "林间",
+			"Crumble": "崩溃之地",
+			"Desserted Islands": "甜点之岛",
+			"Dwarf Fortress": "矮人堡垒",
+			"Dwarven": "十字交叉",
+			"Dynasty": "落樱亭台",
+			"Eden": "伊甸园",
+			"Eirene": "穹顶",
+			"Elven": "巨城",
+			"Elven Towers": "精灵巨城",
+			"Entangled": "金矿遗迹",
+			"Equinox": "四季秘境",
+			"Firelink Shrine": "遗迹之城",
+			"Frostbite": "冰封之岛",
+			"Fortress": "要塞",
+			"Fossil": "树海秘境",
+			"Foundation": "建筑工地",
+			"Fungi": "蘑菇岛",
+			"Hontori": "樱扬桥亭",
+			"Humidity": "荒漠",
+			"Jinzhou": "樱花岛屿",
+			"LongIsland": "狭长岛屿",
+			"Maereen": "金字塔",
+			"Magnolite": "熔岩巨山",
+			"Marooned": "放逐之地",
+			"Martian": "火星基地",
+			"MegaShire": "希雷",
+			"Meteor": "流星",
+			"Onionring 2": "洋葱环 v2",
+			"Onset": "角斗场",
+			"Overfall": "高地之湖",
+			"Pitfall": "中空岛屿",
+			"Plateau": "高原",
+			"Railroad": "铁路",
+			"Reef": "暗礁之地",
+			"Rocky": "乱石崚峋",
+			"Sanctuary": "圣所",
+			"Sanctum": "圣地",
+			"Sandbox": "沙盒",
+			"Sawmill": "锯木厂",
+			"Siege": "浮空城",
+			"Sentinel": "前哨基地",
+			"Shire": "营地",
+			"Shrooms": "蘑菇之境",
+			"Skychurch": "天空教堂",
+			"Strata": "升空之岛",
+			"Submerged": "深海秘境",
+			"Templar": "圣堂",
+			"Towers": "塔楼基地",
+			"Tribal": "林间树屋",
+			"Tribute": "决战之岩",
+			"Tundra": "苔原",
+			"Frost Bound": "冰霜巨城",
+			"Twisted Grove": "环合密林",
+
+			"Ancient Tomb": "古墓",
+			"Towerfall": "高坠塔",
+			"Transport": "运输塔",
+			"Archives": "档案馆",
+			"Hypixel World": " Hypixel 游乐园",
+			"Headquarters": "总部",
+			"Library": "图书馆",
+			"Gold Rush": "淘金热",
+			"Cruise Ship": "游轮",
+			"Hollywood": "好莱坞",
+			"Archives Top Floor": "档案馆顶层",
+			"Widow\"s Den": "寡妇的书房",
+			"Snowglobe": "雪景球",
+
+			"Arena": "竞技场",
+			"Sumo": "相扑",
+			"Aquatica": "水生",
+
+			"Thornhill": "生灵之山",
+			"The Rift": "征召峡谷",
+			"Stormwind": "风暴之境",
+			"Scorched": "暗黑圣地",
+			"Ruins": "遗弃古堡",
+			"Neolithic": "大漠之丘",
+			"Gorge": "雪原城池",
+			"Falstad Gate": "石城之门",
+			"Doriven Basin": "荒郊盆地",
+			"Death Valley": "死亡山谷",
+			"Crossfire": "交火王城",
+			"Black Temple": "黑岩神寺",
+			"Atherrough Valley": "神魔之城",
+			"Arches": "失落山谷",
+			"Arathi": "远郊乡村"
+			
+			
+		},
+		"languages": {
+			"ENGLISH": "英语",
+			"GERMAN": "德语",
+			"FRENCH": "法语",
+			"CHINESE_SIMPLIFIED": "简体中文",
+			"CHINESE_TRADITIONAL": "繁体中文",
+			"PORTUGUESE_BR": "葡萄牙语_巴西",
+			"RUSSIAN": "俄语",
+			"KOREAN": "韩语/朝鲜语",
+			"POLISH": "波兰语",
+			"JAPANESE": "日本语",
+			"PIRATE": "海盗语",
+			"PORTUGUESE_PT": "葡萄牙语_葡萄牙",
+			"TURKISH": "土耳其",
+			"CZECK": "捷克语",
+			"FINNISH": "芬兰语",
+			"GREEK": "希腊语"
+		},
+		"buildbattle_Rank":{
+			"Rookie": "初来乍到",
+			"Untrained": "未经雕琢",
+			"Amateur": "初窥门径",
+			"Apprentice": "学有所成",
+			"Experienced": "驾轻就熟",
+			"Seasoned": "历练老成",
+			"Trained": "技艺精湛",
+			"Skilled": "炉火纯青",
+			"Talented": "技惊四座",
+			"Professional": "巧夺天工",
+			"Expert": "闻名于世",
+			"Master": "名垂青史"
+		}
+	}
+}

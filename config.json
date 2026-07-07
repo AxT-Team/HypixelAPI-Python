@@ -1,0 +1,10 @@
+{
+	"hypixel": {
+		"resource": "hypixel.json",
+		"api_key": "xxx",
+		"timezone_offset": 28800
+	},
+	"staffs": ["10001"],
+	"cooldown": 10,
+	"cooldown_message": "获取速度太快了啦!"
+}
